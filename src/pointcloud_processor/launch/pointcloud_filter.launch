@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Parameters -->
+    <arg name="input_topic" default="/livox/lidar"/>
+    <arg name="output_topic" default="/points_filtered"/>
+    <arg name="output_plane_topic" default="/points_plane"/>
+    <arg name="filters" default="vr"/>
+    <arg name="accumulation_time" default="1.0"/>
+    <arg name="max_points" default="1000000"/>
+    <arg name="voxel_leaf_size" default="0.1"/>
+    <arg name="ransac_distance_threshold" default="0.05"/>
+    <arg name="ransac_max_iterations" default="1000"/>
+    <arg name="ransac_publish_mode" default="both"/>
+
+    <!-- Node -->
+    <node name="pointcloud_filter" pkg="pointcloud_processor" type="pointcloud_filter.py" output="screen">
+        <param name="input_topic" value="$(arg input_topic)"/>
+        <param name="output_topic" value="$(arg output_topic)"/>
+        <param name="output_plane_topic" value="$(arg output_plane_topic)"/>
+        <param name="filters" value="$(arg filters)"/>
+        <param name="accumulation_time" value="$(arg accumulation_time)"/>
+        <param name="max_points" value="$(arg max_points)"/>
+        <param name="voxel_leaf_size" value="$(arg voxel_leaf_size)"/>
+        <param name="ransac_distance_threshold" value="$(arg ransac_distance_threshold)"/>
+        <param name="ransac_max_iterations" value="$(arg ransac_max_iterations)"/>
+        <param name="ransac_publish_mode" value="$(arg ransac_publish_mode)"/>
+    </node>
+</launch>

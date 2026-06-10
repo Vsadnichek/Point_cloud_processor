@@ -1,0 +1,13 @@
+\subsubsection usage Usage
+\verbatim
+<node name="cloud_filter_node" pkg="mirror_live_node" type="cloud_filter_node">
+  <param name="box_cx" type="double" value="-0.8" />
+  <param name="box_cy" type="double" value="-2.2" />
+  <param name="box_cz" type="double" value="0.2" />
+  <param name="box_lx" type="double" value="1.0989" />
+  <param name="box_ly" type="double" value="1.8981" />
+  <param name="box_lz" type="double" value="1.0" />
+  <param name="box_yaw" type="double" value="-0.5024" />
+</node>
+\endverbatim
+

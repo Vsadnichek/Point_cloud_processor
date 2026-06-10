@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Загружаем параметры -->
+    <arg name="leaf_size" default="0.05"/>
+    <arg name="input_topic" default="/points_raw"/>
+    <arg name="output_topic" default="/voxels_filtered"/>
+    
+    <!-- Запускаем ноду -->
+    <node name="voxel_grid_filter" 
+          pkg="pointcloud_processor" 
+          type="voxel_grid_filter.py" 
+          output="screen">
+        
+        <!-- Параметры -->
+        <param name="leaf_size" value="$(arg leaf_size)"/>
+        <param name="input_topic" value="$(arg input_topic)"/>
+        <param name="output_topic" value="$(arg output_topic)"/>
+        
+    </node>
+    
+    <!-- Для отладки можно добавить rviz -->
+    <!-- 
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find pointcloud_processor)/config/config.rviz"/>
+    -->
+</launch>

@@ -1,0 +1,8 @@
+prefix=/home/vsadnik/catkin_ws/install
+
+Name: pointcloud_processor
+Description: Description of pointcloud_processor
+Version: 0.1.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: rospy std_msgs sensor_msgs geometry_msgs

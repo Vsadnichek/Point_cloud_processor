@@ -1,0 +1,8 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~mirror_center_x" : \b [double] Mirror center X (in lidar frame) min: -10.0, default: 0.0, max: 10.0
+- \b "~mirror_center_y" : \b [double] Mirror center Y (in lidar frame) min: -10.0, default: 0.306, max: 10.0
+- \b "~mirror_yaw_deg" : \b [double] Mirror rotation around Z (degrees) min: -180.0, default: 31.6, max: 180.0
+

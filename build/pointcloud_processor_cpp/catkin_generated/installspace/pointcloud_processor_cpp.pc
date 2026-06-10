@@ -1,0 +1,8 @@
+prefix=/home/vsadnik/catkin_ws/install
+
+Name: pointcloud_processor_cpp
+Description: Description of pointcloud_processor_cpp
+Version: 0.1.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: roscpp sensor_msgs pcl_ros pcl_conversions

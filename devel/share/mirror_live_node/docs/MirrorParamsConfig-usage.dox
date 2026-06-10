@@ -1,0 +1,9 @@
+\subsubsection usage Usage
+\verbatim
+<node name="mirror_live_node" pkg="mirror_live_node" type="mirror_live_node">
+  <param name="mirror_center_x" type="double" value="0.0" />
+  <param name="mirror_center_y" type="double" value="0.306" />
+  <param name="mirror_yaw_deg" type="double" value="31.6" />
+</node>
+\endverbatim
+

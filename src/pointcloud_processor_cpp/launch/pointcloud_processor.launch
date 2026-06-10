@@ -1,0 +1,12 @@
+<launch>
+  <node pkg="pointcloud_processor_cpp" type="pointcloud_processor_cpp_node"
+        name="pointcloud_processor" output="screen">
+    <param name="update_period_sec" value="1.0"/>
+    <param name="input_topic" value="/livox/lidar"/>
+    <param name="output_topic" value="/points_filtered"/>
+    <param name="voxel_leaf_size" value="0.1"/>
+    <param name="ingress_queue_capacity" value="4096"/>
+    <param name="work_queue_capacity" value="32"/>
+    <param name="ros_callback_thread_count" value="2"/>
+  </node>
+</launch>

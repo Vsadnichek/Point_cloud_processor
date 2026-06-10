@@ -1,0 +1,2 @@
+mirror_live_node:pointcloud_processor:pointcloud_processor_cpp
+-DCATKIN_DEVEL_PREFIX=/home/vsadnik/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/vsadnik/catkin_ws/install -G Unix Makefiles

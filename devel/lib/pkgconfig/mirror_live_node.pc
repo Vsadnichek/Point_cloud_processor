@@ -1,0 +1,8 @@
+prefix=/home/vsadnik/catkin_ws/devel
+
+Name: mirror_live_node
+Description: Description of mirror_live_node
+Version: 0.1.0
+Cflags: -I/home/vsadnik/catkin_ws/devel/include
+Libs: -L${prefix}/lib 
+Requires: 

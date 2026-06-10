@@ -1,0 +1,12 @@
+\subsubsection parameters ROS parameters
+
+Reads and maintains the following parameters on the ROS server
+
+- \b "~box_cx" : \b [double] Box center X min: -10.0, default: -0.8, max: 10.0
+- \b "~box_cy" : \b [double] Box center Y min: -10.0, default: -2.2, max: 10.0
+- \b "~box_cz" : \b [double] Box center Z min: -10.0, default: 0.2, max: 10.0
+- \b "~box_lx" : \b [double] Length X min: 0.01, default: 1.0989, max: 10.0
+- \b "~box_ly" : \b [double] Length Y min: 0.01, default: 1.8981, max: 10.0
+- \b "~box_lz" : \b [double] Length Z min: 0.01, default: 1.0, max: 10.0
+- \b "~box_yaw" : \b [double] Yaw (rad) min: -3.14, default: -0.5024, max: 3.14
+
