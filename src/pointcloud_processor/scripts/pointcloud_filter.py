@@ -1,4 +1,4 @@
-#!/home/vsadnik/venv/bin/python3
+#!/usr/bin/env python3
 
 import rospy
 import numpy as np
@@ -98,7 +98,7 @@ class PointCloudFilter:
 
         # 3. Применить воксельный фильтр
         voxelized = self.apply_voxel_grid(merged_raw)
-
+        rospy.loginfo(f"Voxelized cloud: {len(voxelized)} points")
 
         # 4. Фазы инициализации RANSAC и обработки
         if self.phase == 'init':

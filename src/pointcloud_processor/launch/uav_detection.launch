@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="input_topic" default="/livox/lidar"/>
+    <arg name="voxel_cloud_topic" default="/voxel_cloud"/>
+    <arg name="dense_cloud_topic" default="/dense_cloud"/>
+    <arg name="objects_topic" default="/objects_cloud"/>
+    <arg name="plane_topic" default="/plane_points"/>
+
+    <arg name="voxel_leaf_size" default="0.1"/>
+    <arg name="voxel_accumulation_frames" default="50"/>
+
+    <arg name="ransac_distance_threshold" default="0.1"/>
+    <arg name="ransac_accumulation_frames" default="4"/>
+    <arg name="ransac_max_iterations" default="1000"/>
+    <arg name="ransac_min_plane_points" default="500"/>
+    <arg name="ransac_min_inlier_ratio" default="0.05"/>
+
+    <node name="voxel_grid_filter" pkg="pointcloud_processor" type="voxel_grid_filter.py" output="screen">
+        <param name="input_topic" value="$(arg input_topic)"/>
+        <param name="voxel_cloud_topic" value="$(arg voxel_cloud_topic)"/>
+        <param name="dense_cloud_topic" value="$(arg dense_cloud_topic)"/>
+        <param name="leaf_size" value="$(arg voxel_leaf_size)"/>
+        <param name="accumulation_frames" value="$(arg voxel_accumulation_frames)"/>
+    </node>
+
+    <node name="ransac_filter" pkg="pointcloud_processor" type="ransac_filter.py" output="screen">
+        <param name="input_topic" value="$(arg voxel_cloud_topic)"/>
+        <param name="objects_topic" value="$(arg objects_topic)"/>
+        <param name="plane_topic" value="$(arg plane_topic)"/>
+        <param name="distance_threshold" value="$(arg ransac_distance_threshold)"/>
+        <param name="accumulation_frames" value="$(arg ransac_accumulation_frames)"/>
+        <param name="max_iterations" value="$(arg ransac_max_iterations)"/>
+        <param name="min_plane_points" value="$(arg ransac_min_plane_points)"/>
+        <param name="min_inlier_ratio" value="$(arg ransac_min_inlier_ratio)"/>
+    </node>
+
+    <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find pointcloud_processor)/config/uav_detection.rviz"/>
+</launch>

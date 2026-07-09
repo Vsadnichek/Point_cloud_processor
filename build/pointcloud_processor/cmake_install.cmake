@@ -55,6 +55,7 @@ endif()
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pointcloud_processor" TYPE PROGRAM FILES
     "/home/vsadnik/catkin_ws/src/pointcloud_processor/scripts/voxel_grid_filter.py"
+    "/home/vsadnik/catkin_ws/src/pointcloud_processor/scripts/ransac_filter.py"
     "/home/vsadnik/catkin_ws/src/pointcloud_processor/scripts/pointcloud_filter.py"
     )
 endif()
