@@ -35,6 +35,7 @@ catkin_package(
 install(PROGRAMS
   scripts/voxel_grid_filter.py
   scripts/ransac_filter.py
+  scripts/dbscan_cluster.py
   scripts/pointcloud_filter.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

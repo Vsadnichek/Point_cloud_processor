@@ -6,7 +6,7 @@
     <arg name="objects_topic" default="/objects_cloud"/>
     <arg name="plane_topic" default="/plane_points"/>
 
-    <arg name="voxel_leaf_size" default="0.1"/>
+    <arg name="voxel_leaf_size" default="0.05"/>
     <arg name="voxel_accumulation_frames" default="50"/>
 
     <arg name="ransac_distance_threshold" default="0.1"/>
@@ -14,6 +14,10 @@
     <arg name="ransac_max_iterations" default="1000"/>
     <arg name="ransac_min_plane_points" default="500"/>
     <arg name="ransac_min_inlier_ratio" default="0.05"/>
+
+    <arg name="dbscan_eps" default="0.15"/>
+    <arg name="dbscan_min_samples" default="30"/>
+    <arg name="clusters_topic" default="/dbscan_clusters"/>
 
     <node name="voxel_grid_filter" pkg="pointcloud_processor" type="voxel_grid_filter.py" output="screen">
         <param name="input_topic" value="$(arg input_topic)"/>
@@ -32,6 +36,13 @@
         <param name="max_iterations" value="$(arg ransac_max_iterations)"/>
         <param name="min_plane_points" value="$(arg ransac_min_plane_points)"/>
         <param name="min_inlier_ratio" value="$(arg ransac_min_inlier_ratio)"/>
+    </node>
+
+    <node name="dbscan_cluster" pkg="pointcloud_processor" type="dbscan_cluster.py" output="screen">
+        <param name="input_topic" value="$(arg objects_topic)"/>
+        <param name="output_topic" value="$(arg clusters_topic)"/>
+        <param name="dbscan_eps" value="$(arg dbscan_eps)"/>
+        <param name="dbscan_min_samples" value="$(arg dbscan_min_samples)"/>
     </node>
 
     <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find pointcloud_processor)/config/uav_detection.rviz"/>

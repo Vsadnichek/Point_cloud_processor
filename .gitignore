@@ -3,3 +3,7 @@ build/
 devel/
 *.pyc
 __pycache__/
+
+# Large datasets
+datasets/other.zip
+datasets/room.zip

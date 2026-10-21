@@ -3,8 +3,6 @@
 import rospy
 import numpy as np
 import open3d as o3d
-import sensor_msgs
-from sensor_msgs import msg
 import sensor_msgs.point_cloud2 as pc2
 from sensor_msgs.msg import PointCloud2
 import ros_numpy
@@ -166,10 +164,9 @@ class RANSACFilter:
             self.pub_plane.publish(plane_msg)
             rospy.loginfo(f"Plane cloud: {len(plane_points)} points")
 
-    def ros_to_numpy(self, msg):
+    def ros_to_numpy(self, cloud_msg):
         # Convert ROS PointCloud2 message to numpy array
-        xyz_array = ros_numpy.point_cloud2.pointcloud2_to_xyz_array(msg)
-        return xyz_array
+        return ros_numpy.point_cloud2.pointcloud2_to_xyz_array(cloud_msg)
     
 
     def numpy_to_ros(self, points, header):
