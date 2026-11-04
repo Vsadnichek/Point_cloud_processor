@@ -58,7 +58,7 @@ jobs:
         run: mkdir -p build && tectonic -o build article.tex
 
       - name: Build article example
-        if: always() && steps.fonts.outcome == 'success'
+        if: always() && steps.fonts.outcome == 'success' && hashFiles('article/example/example.tex') != ''
         working-directory: article/example
         run: |
           rm -f misisarticle.cls
