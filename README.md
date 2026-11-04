@@ -169,6 +169,26 @@ matching input topic:
 roslaunch pointcloud_processor uav_detection.launch input_topic:=/velodyne_points
 ```
 
+## Scientific article
+
+The MISiS LaTeX template and article build instructions are in
+[`article/`](article/README.md), including the reference paper in
+[`article/example/`](article/example/example.tex).
+
+Source: [sadekovlar/misis-article-latex](https://github.com/sadekovlar/misis-article-latex),
+revision `7b16e2c99fc8e0eab64be02f10fd2077c956dc6f`.
+
+```bash
+cd article
+make article  # Compile the editable template with Tectonic
+make example  # Compile the reference paper
+```
+
+The original source files, documentation, Makefile and LPPL license are included.
+For Windows portability, `article/example/misisarticle.cls` is a copy of the class
+instead of the upstream symbolic link. The GitHub Actions workflow uses the
+`article/` paths and compiles both the template and the reference paper.
+
 ## Notes
 
 - The repository does not track `.venv`, `build/`, or `devel/`.

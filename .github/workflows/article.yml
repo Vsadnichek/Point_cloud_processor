@@ -1,0 +1,81 @@
+name: Build article
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  latex:
+    # Times New Roman и Courier New уже есть в образе Windows.
+    # На ubuntu-latest их нет, и класс уходит в запасной TeX Gyre.
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: article
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: wtfjoke/setup-tectonic@v4
+        with:
+          tectonic-version: "0.17.0"
+
+      - name: Require Times New Roman and Courier New
+        id: fonts
+        run: |
+          mkdir -p .ci-fontcheck
+          cat > .ci-fontcheck/fontcheck.tex << 'EOF'
+          \documentclass{article}
+          \usepackage{fontspec}
+          \usepackage{polyglossia}
+          \setdefaultlanguage{russian}
+          \IfFontExistsTF{Times New Roman}{}{%
+            \PackageError{fontcheck}{Times New Roman is not installed}{}%
+          }
+          \IfFontExistsTF{Courier New}{}{%
+            \PackageError{fontcheck}{Courier New is not installed}{}%
+          }
+          \setmainfont{Times New Roman}[
+            Ligatures=TeX,
+            BoldFont={Times New Roman Bold},
+            ItalicFont={Times New Roman Italic},
+            BoldItalicFont={Times New Roman Bold Italic},
+          ]
+          \newfontfamily\cyrillicfont{Times New Roman}[
+            Ligatures=TeX,
+            BoldFont={Times New Roman Bold},
+            ItalicFont={Times New Roman Italic},
+            BoldItalicFont={Times New Roman Bold Italic},
+          ]
+          \newfontfamily\cyrillicfonttt{Courier New}
+          \begin{document}
+          Проверка \textbf{жирный} \textit{курсив} \texttt{абв}
+          \end{document}
+          EOF
+          tectonic -o .ci-fontcheck .ci-fontcheck/fontcheck.tex
+
+      - name: Build article template
+        run: mkdir -p build && tectonic -o build article.tex
+
+      - name: Build article example
+        if: always() && steps.fonts.outcome == 'success'
+        working-directory: article/example
+        run: |
+          rm -f misisarticle.cls
+          cp ../misisarticle.cls misisarticle.cls
+          mkdir -p build
+          tectonic -o build example.tex
+
+      - name: Upload article PDF
+        if: always() && steps.fonts.outcome == 'success' && hashFiles('article/build/article.pdf') != ''
+        uses: actions/upload-artifact@v7
+        with:
+          path: article/build/article.pdf
+          archive: false
+
+      - name: Upload example PDF
+        if: always() && steps.fonts.outcome == 'success' && hashFiles('article/example/build/example.pdf') != ''
+        uses: actions/upload-artifact@v7
+        with:
+          path: article/example/build/example.pdf
+          archive: false
