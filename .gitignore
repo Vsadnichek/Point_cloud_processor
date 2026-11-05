@@ -7,3 +7,29 @@ __pycache__/
 # Large datasets
 datasets/other.zip
 datasets/room.zip
+
+# Build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.xdv
+*.pdf
+
+/build/
+example/build/*
+dist/
+
+# OS / editor
+.DS_Store
+*.swp
+*~
+.idea/
+.vscode/
